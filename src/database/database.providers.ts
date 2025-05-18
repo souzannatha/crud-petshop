@@ -9,15 +9,14 @@ export const databaseProviders = [
         type: 'postgres',
         host: 'localhost',
         port: 5432,
-        username: 'root',
-        password: 'root',
+        username: 'postgres',
+        password: 'toor',
         database: 'petshop',
         entities: [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],
         synchronize: true,
       });
-
       return dataSource.initialize();
     },
   },

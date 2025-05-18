@@ -1,29 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class PetEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({length: 100})
+  @Column({ length: 100 })
   name: string;
 
   @Column()
   type: string;
 
   @Column()
-  age: number
+  age: number;
 
   @Column()
   breed?: string;
 
-  @Column()
+  @Column({ default: false })
   isDangerous: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updatedAt: Date;
-
 }

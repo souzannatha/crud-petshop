@@ -3,7 +3,7 @@ export class UpdatePetDto {
 
   readonly type: string;
 
-  readonly age: number
+  readonly age: number;
 
   readonly breed?: string;
 

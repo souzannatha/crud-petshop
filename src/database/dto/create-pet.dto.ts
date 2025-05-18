@@ -1,11 +1,11 @@
 export class CreatePetDto {
-   readonly name: string;
+  readonly name: string;
 
-   readonly type: string;
+  readonly type: string;
 
-   readonly age: number
+  readonly age: number;
 
-   readonly breed?: string;
+  readonly breed?: string;
 
-   readonly isDangerous: boolean;
+  readonly isDangerous: boolean;
 }
