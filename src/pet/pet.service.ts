@@ -1,4 +1,4 @@
-import { Body, Inject, Injectable } from '@nestjs/common';
+import { Body, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePetDto } from 'src/database/dto/create-pet.dto';
 import { PetEntity } from 'src/entities/pet.entity';
 import { Repository } from 'typeorm';
@@ -13,5 +13,12 @@ export class PetService {
   async createPet(createPetDto: CreatePetDto) {
     const newPet = this.petRepository.create(createPetDto);
     return this.petRepository.save(newPet);
+  }
+  async findOne(id: number): Promise<PetEntity> {
+    const pet = await this.petRepository.findOne({ where: { id } });
+    if (!pet) {
+      throw new NotFoundException('Pet não encontrado');
+    }
+    return pet;
   }
 }
