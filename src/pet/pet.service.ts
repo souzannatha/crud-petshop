@@ -6,6 +6,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CreatePetDto } from 'src/database/dto/create-pet.dto';
+import { UpdatePetDto } from 'src/database/dto/update-pet.dto';
 import { PetEntity } from 'src/entities/pet.entity';
 import { Repository } from 'typeorm';
 
@@ -20,6 +21,7 @@ export class PetService {
     const newPet = this.petRepository.create(createPetDto);
     return this.petRepository.save(newPet);
   }
+
   async findOne(id: number) {
     const pet = await this.petRepository.findOne({ where: { id } });
     if (!pet) {
@@ -38,5 +40,10 @@ export class PetService {
       throw new NotFoundException('pet não encontrado.');
     }
     return await this.petRepository.remove(pet);
+  }
+
+  async update(id: number, updatePetDto: UpdatePetDto) {
+    await this.petRepository.update(id, updatePetDto);
+    return this.petRepository.findOne({ where: { id } });
   }
 }
