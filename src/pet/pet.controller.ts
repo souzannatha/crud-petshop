@@ -22,4 +22,9 @@ export class PetController {
   async findOne(@Param('id') id: string) {
     return this.petService.findOne(+id);
   }
+
+  @Get()
+  async findAllPets() {
+    return this.petService.findAll();
+  }
 }

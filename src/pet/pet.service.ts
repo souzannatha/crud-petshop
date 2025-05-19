@@ -14,11 +14,15 @@ export class PetService {
     const newPet = this.petRepository.create(createPetDto);
     return this.petRepository.save(newPet);
   }
-  async findOne(id: number): Promise<PetEntity> {
+  async findOne(id: number) {
     const pet = await this.petRepository.findOne({ where: { id } });
     if (!pet) {
       throw new NotFoundException('Pet não encontrado');
     }
     return pet;
+  }
+
+  async findAll(): Promise<PetEntity[]> {
+    return this.petRepository.find();
   }
 }
