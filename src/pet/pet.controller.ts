@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotFoundException,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreatePetDto } from 'src/database/dto/create-pet.dto';
 import { PetService } from './pet.service';
 import { PetEntity } from 'src/entities/pet.entity';
@@ -26,5 +19,10 @@ export class PetController {
   @Get()
   async findAllPets() {
     return this.petService.findAll();
+  }
+
+  @Delete(':id')
+  async removePet(@Param('id') id: string) {
+    return this.petService.removePet(+id);
   }
 }
